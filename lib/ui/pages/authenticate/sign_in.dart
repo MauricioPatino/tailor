@@ -32,46 +32,53 @@ class _SignInState extends State<SignIn> {
     return loading ? Loading() : Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar: AppBar(
-
-        backgroundColor: Colors.lightBlue,
-        elevation: 0.0,
-        title: Text('Sign In for Date Ready'),
-      ),
+      // appBar: AppBar(
+      //
+      //   backgroundColor: Colors.lightBlue,
+      //   elevation: 0.0,
+      //   title: Text('Sign In for Date Ready'),
+      // ),
       body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Colors.green,
+              Colors.yellow,
+            ],
+          )
+        ),
           padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 50.0),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              Expanded(
+              const Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
+                  padding: EdgeInsets.only(top: 10.0),
                   child: Center(
-                    child: Container(
-                          margin: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('assets/images/date-ready.png'),
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                    ),
+                    child: Text('Tailor',
+                    style: TextStyle(
+                      fontSize: 48.0,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),),
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.lightBlueAccent),
+                    borderSide: BorderSide(width: 3, color: Colors.lightBlueAccent),
                     //borderRadius: BorderRadius.circular(15),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.lightBlueAccent),
+                    borderSide: BorderSide(width: 3, color: Colors.lightBlueAccent),
                   ),
                 ),// textInputDecoration.copyWith(hintText: 'Email'),
                 validator: (val) => val!.isEmpty ? 'Enter your email' : null,
@@ -81,16 +88,16 @@ class _SignInState extends State<SignIn> {
                   });
                 },
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'Password',
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.lightBlueAccent),
+                    borderSide: BorderSide(width: 3, color: Colors.lightBlueAccent),
                     //borderRadius: BorderRadius.circular(15),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.lightBlueAccent),
+                    borderSide: BorderSide(width: 3, color: Colors.lightBlueAccent),
                   ),
                 ), //textInputDecoration.copyWith(hintText: 'Password'),
                 validator: (val) => val!.length < 6 ? 'Enter a password 6 characters long' : null,
@@ -101,7 +108,7 @@ class _SignInState extends State<SignIn> {
                   });
                 },
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               ElevatedButton(
                 child: Text('Sign in'),
                 style: ButtonStyle(
@@ -123,9 +130,9 @@ class _SignInState extends State<SignIn> {
                   }
                 },
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Text(error,style: TextStyle(color: Colors.red,fontSize: 20.0),),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               ElevatedButton(onPressed: () {widget.toggleView();}, child: Text('Register')),
             ],
           ),
