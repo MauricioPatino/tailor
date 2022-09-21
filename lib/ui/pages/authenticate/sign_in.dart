@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tailor/ui/pages/register_screens/otp.dart';
 import 'package:tailor/ui/pages/services/auth.dart';
 import 'package:tailor/ui/pages/shared/constants.dart';
 import 'package:tailor/ui/pages/shared/loading.dart';
@@ -54,31 +55,35 @@ class _SignInState extends State<SignIn> {
             child: Column(
                 mainAxisSize: MainAxisSize.min,
                   children: [
-                       Center(
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                          // mainAxisSize: MainAxisSize.max,
-                          //  crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                          Flexible(
-                            flex: 1,
-                            fit: FlexFit.loose,
-                            child: Icon(Icons.favorite, size: 60, color: Colors.yellowAccent,),
-                              ),
+                       SizedBox(
+                         height: MediaQuery.of(context).size.height*0.50,
+                         child: Padding(
+                           padding: const EdgeInsets.all(60.0),
+                           child: Row(
+                             mainAxisAlignment: MainAxisAlignment.center,
+                            // mainAxisSize: MainAxisSize.max,
+                            //crossAxisAlignment: CrossAxisAlignment.center,
+                            children: const [
                             Flexible(
                               flex: 1,
-                              fit: FlexFit.tight,
-                              child: Text('Tailor',
-                                  style: TextStyle(
-                                    fontSize: 48.0,
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                              fit: FlexFit.loose,
+                              child: Icon(Icons.favorite, size: 60, color: Colors.yellowAccent,),
+                                ),
+                              Flexible(
+                                flex: 1,
+                                fit: FlexFit.tight,
+                                child: Text('Tailor',
+                                    style: TextStyle(
+                                      fontSize: 48.0,
+                                      fontStyle: FontStyle.italic,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
+                         ),
                         ),
 
                 Visibility(
@@ -104,7 +109,7 @@ class _SignInState extends State<SignIn> {
                           ), label: const Text('Sign in with Facebook'), icon: const Icon(Icons.facebook),),
                               const SizedBox(height: 10,),
 
-                          ElevatedButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));}, style: ElevatedButton.styleFrom(
+                          ElevatedButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const OTPScreen(phone, toggleView)));}, style: ElevatedButton.styleFrom(
                             primary: Colors.lightGreen, onPrimary: Colors.black, minimumSize: const Size(250,50), maximumSize: const Size(250,75),
                           ), label: const Text('Sign in with phone number'), icon: const Icon(Icons.phone),),
 
