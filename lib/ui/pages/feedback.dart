@@ -12,10 +12,6 @@ class _FeedScreen extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Feedback'),
-        automaticallyImplyLeading: false,
-      ),
       body: Center(
         child: Container(
           height: 80,

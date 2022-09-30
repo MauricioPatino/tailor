@@ -52,6 +52,9 @@ dependencies:
   equatable: ^2.0.3
   rxdart: ^0.27.2
   swipeable_card_stack: ^0.0.5
+  pinput: ^2.2.12
+  google_fonts: ^3.0.1
+
 
 dev_dependencies:
   flutter_test:

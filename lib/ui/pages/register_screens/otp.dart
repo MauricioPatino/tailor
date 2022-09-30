@@ -1,16 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import '../authenticate/sign_in.dart';
-//import 'package:phone_auth_project/home.dart';
-//import 'package:pinput/pinput.dart';
+import 'package:pinput/pinput.dart';
+import 'package:tailor/ui/pages/authenticate/login.dart';
+import 'package:tailor/ui/pages/home.dart';
 
 class OTPScreen extends StatefulWidget {
-  final Function toggleView;
-  //OTPScreenL({required this.toggleView});
-
   final String phone;
-  OTPScreen(this.phone, this.toggleView);
+  const OTPScreen(this.phone);
   @override
   _OTPScreenState createState() => _OTPScreenState();
 }
@@ -21,21 +18,21 @@ class _OTPScreenState extends State<OTPScreen> {
   final TextEditingController _pinPutController = TextEditingController();
 
 
-  // final defaultPinTheme = PinTheme(
-  //   width: 56,
-  //   height: 56,
-  //   textStyle: TextStyle(fontSize: 20, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.w600),
-  //   decoration: BoxDecoration(
-  //     border: Border.all(color: Colors.black),
-  //     borderRadius: BorderRadius.circular(20),
-  //   ),
-  // );
+  final defaultPinTheme = PinTheme(
+    width: 56,
+    height: 56,
+    textStyle: TextStyle(fontSize: 20, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.w600),
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.black),
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldkey,
       appBar: AppBar(
-        title: Text('OTP Verification'),
+        title: Text('OTP Verification Test'),
       ),
       body: Column(
         children: [
@@ -48,35 +45,33 @@ class _OTPScreenState extends State<OTPScreen> {
               ),
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.all(30.0),
-          //   child: Pinput(
-          //     length: 6,
-          //     defaultPinTheme: defaultPinTheme,
-          //
-          //     controller: _pinPutController,
-          //
-          //     pinAnimationType: PinAnimationType.fade,
-          //     onSubmitted: (pin) async {
-          //       try {
-          //         await FirebaseAuth.instance
-          //             .signInWithCredential(PhoneAuthProvider.credential(
-          //             verificationId: _verificationCode!, smsCode: pin))
-          //             .then((value) async {
-          //           if (value.user != null) {
-          //             Navigator.pushAndRemoveUntil(
-          //                 context,
-          //                 MaterialPageRoute(builder: (context) => Home()),
-          //                     (route) => false);
-          //           }
-          //         });
-          //       } catch (e) {
-          //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
-          //
-          //       }
-          //     },
-          //   ),
-          // )
+          Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Pinput(
+              length: 6,
+              defaultPinTheme: defaultPinTheme,
+              controller: _pinPutController,
+              pinAnimationType: PinAnimationType.fade,
+              onSubmitted: (pin) async {
+                try {
+                  await FirebaseAuth.instance
+                      .signInWithCredential(PhoneAuthProvider.credential(
+                      verificationId: _verificationCode!, smsCode: pin))
+                      .then((value) async {
+                    if (value.user != null) {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) =>  Home()),
+                              (route) => false);
+                    }
+                  });
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+
+                }
+              },
+            ),
+          )
         ],
       ),
     );
@@ -92,13 +87,15 @@ class _OTPScreenState extends State<OTPScreen> {
             if (value.user != null) {
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => SignIn(toggleView: widget.toggleView())),
+                  MaterialPageRoute(builder: (context) =>  Home()),
                       (route) => false);
             }
           });
         },
         verificationFailed: (FirebaseAuthException e) {
-          print(e.message);
+          if (kDebugMode) {
+            print(e.message);
+          }
         },
         codeSent: (String? verficationID, int? resendToken) {
           setState(() {
@@ -110,7 +107,7 @@ class _OTPScreenState extends State<OTPScreen> {
             _verificationCode = verificationID;
           });
         },
-        timeout: Duration(seconds: 120));
+        timeout: const Duration(seconds: 120));
   }
 
   @override

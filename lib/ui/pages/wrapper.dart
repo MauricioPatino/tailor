@@ -4,6 +4,8 @@ import 'package:tailor/ui/pages/authenticate/authenticate.dart';
 import 'package:tailor/ui/pages/models/myUser.dart';
 import 'package:tailor/ui/pages/home.dart';
 
+import 'authenticate/sign_in.dart';
+
 
 //this class listens for auth changes
 class Wrapper extends StatelessWidget {
@@ -12,9 +14,10 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<myUser?>(context);
+    //final user = Provider.of<myUser?>(context);
 
     if(user == null){
-      return Authenticate();
+      return SignIn();
     } else {
       return Home();
     }

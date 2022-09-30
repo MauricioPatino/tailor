@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:tailor/ui/pages/authenticate/register.dart';
 import 'package:tailor/ui/pages/register_screens/otp.dart';
 import 'package:tailor/ui/pages/services/auth.dart';
 import 'package:tailor/ui/pages/shared/constants.dart';
 import 'package:tailor/ui/pages/shared/loading.dart';
 import 'package:tailor/ui/pages/authenticate/login.dart';
 
+import '../home.dart';
+
 class SignIn extends StatefulWidget {
   //const SignIn({Key? key}) : super(key: key);
-
-  final Function toggleView;
-  SignIn({required this.toggleView});
+  //
+  // final Function toggleView;
+  // SignIn({required this.toggleView});
 
   @override
   _SignInState createState() => _SignInState();
@@ -99,7 +102,7 @@ class _SignInState extends State<SignIn> {
                       child: Column(
                         children: [
                           //const SizedBox(height: 150,),
-                          ElevatedButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));}, style: ElevatedButton.styleFrom(
+                          ElevatedButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));}, style: ElevatedButton.styleFrom(
                             primary: Colors.white, onPrimary: Colors.black, minimumSize: const Size(250,50), maximumSize: const Size(250,75),
                           ), label: const Text('Sign in with Apple'), icon: const Icon(Icons.apple),),
                           const SizedBox(height: 10,),
@@ -109,7 +112,7 @@ class _SignInState extends State<SignIn> {
                           ), label: const Text('Sign in with Facebook'), icon: const Icon(Icons.facebook),),
                               const SizedBox(height: 10,),
 
-                          ElevatedButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const OTPScreen(phone, toggleView)));}, style: ElevatedButton.styleFrom(
+                          ElevatedButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const OTPScreen('2019999999')));}, style: ElevatedButton.styleFrom(
                             primary: Colors.lightGreen, onPrimary: Colors.black, minimumSize: const Size(250,50), maximumSize: const Size(250,75),
                           ), label: const Text('Sign in with phone number'), icon: const Icon(Icons.phone),),
 
@@ -124,10 +127,10 @@ class _SignInState extends State<SignIn> {
                         ),
                     ),
                     Text(error,style: const TextStyle(color: Colors.red,fontSize: 20.0),),
-                    ElevatedButton(onPressed: () {widget.toggleView();}, style: ElevatedButton.styleFrom(
+                    ElevatedButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) =>  Register()));}, style: ElevatedButton.styleFrom(
                       primary: Colors.lightGreen, onPrimary: Colors.black, minimumSize: const Size(250,50), maximumSize: const Size(250,75),),
                       child: const Text('Register'),),
-                  ],
+                  ], //widget.toggleView();
                 ),
               ),
             ),

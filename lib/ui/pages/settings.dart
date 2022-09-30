@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tailor/ui/pages/authenticate/login.dart';
+import 'package:tailor/ui/pages/authenticate/sign_in.dart';
 import 'package:tailor/ui/pages/services/auth.dart';
 
 
@@ -13,10 +15,6 @@ class _Settings extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Settings'),
-        automaticallyImplyLeading: false,
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -52,7 +50,8 @@ class _Settings extends State<Settings> {
                     Divider(height: 20,),
                     ElevatedButton(
                         onPressed: () async {
-                            await _auth.signOut();
+                          Navigator.push(context, MaterialPageRoute(builder: (context) =>  SignIn()));
+                            //await _auth.signOut();
                           },
                         child: Text('Logout')
                     ),

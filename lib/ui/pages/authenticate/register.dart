@@ -7,11 +7,13 @@ import 'package:tailor/ui/pages/shared/loading.dart';
 import 'package:tailor/ui/pages/registration/setup_account.dart';
 import 'package:tailor/ui/pages/register_screens/add_photo.dart';
 
+import 'login.dart';
+
 class Register extends StatefulWidget {
   //const Register({Key? key}) : super(key: key);
 
-  final Function toggleView;
-  Register({required this.toggleView});
+  // final Function toggleView;
+  // Register({required this.toggleView});
 
   @override
   _RegisterState createState() => _RegisterState();
@@ -129,7 +131,7 @@ class _RegisterState extends State<Register> {
                 SizedBox(height: 10,),
                 Text(error,style: TextStyle(color: Colors.red,fontSize: 20.0),),
                 SizedBox(height: 10,),
-                ElevatedButton(onPressed: () {widget.toggleView();}, child: Text('Go Back')),
+                ElevatedButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Login()));}, child: Text('Go Back')),
               ],
             ),
           )
